@@ -18,29 +18,29 @@ import { useState } from "react";
 const stylesInput: SxProps<Theme> = {
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#rgb(70, 130, 180)",
+      borderColor: "#rgb(80, 190, 168)",
     },
     "&:hover fieldset": {
-      borderColor: "#rgb(70, 130, 180)",
+      borderColor: "#rgb(80, 190, 168))",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#rgb(70, 130, 180)",
+      borderColor: "#rgb(80, 190, 168)",
     },
   },
   "& .MuiInputLabel-root": {
-    color: "rgb(110, 216, 255)",
+    color: "rgb(80, 190, 168)",
   },
   "& .MuiInputLabel-root.Mui-focused": {
-    color: "#rgb(110, 216, 255)",
+    color: "#rgb(80, 190, 168)",
   },
   "& .MuiInputBase-input": {
-    color: "rgb(110, 216, 255)",
+    color: "rgb(80, 190, 168))",
   },
 };
 
 export const Login = () => {
   const [formData, setFormData] = useState({
-    email: "andres@test.co",
+    email: "",
     password: "",
 
   });
@@ -62,35 +62,20 @@ export const Login = () => {
     <Stack
       display="flex"
       justifyContent="center"
-      minHeight={"100vh"}
-      bgcolor="#fff"
       gap={2}
       p={5}
-      //borderRadius="16px"
-      >
-    <Stack
-      display="flex"
-      
-      minHeight={"100vh"}
-      bgcolor="#fff"
-      gap={2}
-      p={5}
-      //borderRadius="16px"
-      component="form"
-      onSubmit={handleSubmit}
+      alignItems="center"
     >
-      <Box component="img" src={logo} alt="Logo" sx={
-        {
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "auto",
-          maxWidth: "100px",
-          margin: "0 auto",
-          
-        } as SxProps<Theme>
-      }/>
+      <Box
+        component="img"
+        src={logo}
+        alt="Descripción de la imagen"
+        sx={{
+          width: 60,
+          height: 'auto',
+          borderRadius: 2,
+        }}
+      />
       <TextField
         label="Email"
         variant="outlined"
@@ -113,9 +98,8 @@ export const Login = () => {
         Registro
       </Link>
       <Button component={RouterLink} to="/dasboard" variant="contained" type="submit">
-        Sing In
+        Iniciar Sesión
       </Button>
-    </Stack>
     </Stack>
 
   );

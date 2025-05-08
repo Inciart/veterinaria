@@ -7,7 +7,8 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
-      bgcolor="#242e34"
+      minWidth={"100vw"}
+      bgcolor="#fff"
       component="main"
     >
       {children}
