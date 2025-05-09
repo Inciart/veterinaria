@@ -8,7 +8,7 @@ import {
   Box,
   Link,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -44,7 +44,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate(); // Hook para la navegación programática
   // Aqui validamos el inicio de sesión, si el usuario no ha ingresado su email o password, se le muestra un mensaje de alerta.
   // Si el usuario ha ingresado su email y password, se le redirige a la página de dashboard.
   // mas adelante se ralcionaran con la base de datos para validar el inicio de sesión correspondientemente.
@@ -73,7 +73,7 @@ export const Login = () => {
         icon: "success",
         draggable: true,
       }).then(() => {
-        window.location.href = "/dasboard";
+        navigate("/dashboard"); // Redirige a la página de dashboard
       });
     }
   };

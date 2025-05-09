@@ -18,13 +18,16 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import PetsIcon from "@mui/icons-material/Pets";
 import EventIcon from "@mui/icons-material/Event";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
 export const DashboardUser = () => {
+  const navigate = useNavigate(); // Hook para navegación
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const GotoRegister = () => {
+    navigate("./registerpet");
+  };
   // Función para alternar la apertura/cierre de la barra lateral en dispositivos móviles
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -99,7 +102,7 @@ export const DashboardUser = () => {
       </AppBar>
 
       {/* Barra lateral (sidebar) */}
-      
+
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
@@ -124,7 +127,6 @@ export const DashboardUser = () => {
           {drawer}
         </Drawer>
 
-
         {/* Barra lateral para dispositivos de escritorio */}
         <Drawer
           variant="permanent"
@@ -140,8 +142,7 @@ export const DashboardUser = () => {
           {drawer}
         </Drawer>
       </Box>
-      
-      
+
       <Box
         component="main"
         sx={{
@@ -154,9 +155,10 @@ export const DashboardUser = () => {
         <Typography variant="h4" sx={{ marginBottom: 3 }}>
           Bienvenido al Dashboard de Usuario
         </Typography>
-
         {/* Botón: Registro de Mascotas */}
+
         <Button
+          onSubmit={GotoRegister}
           variant="contained"
           color="primary"
           startIcon={<PetsIcon />}
@@ -165,7 +167,6 @@ export const DashboardUser = () => {
         >
           Registro de Mascotas
         </Button>
-
         {/* Botón: Apartado de Citas */}
         <Button
           variant="contained"
