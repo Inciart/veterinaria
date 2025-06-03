@@ -1,7 +1,11 @@
-
 import { Box, Button, Stack, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
+  const navigate = useNavigate();
+  const handleRout = () => {
+    navigate("/citasvet"); // Regresa al dashboard del usuario
+  };
   return (
     <Box
       sx={{
@@ -48,11 +52,13 @@ export const Dashboard = () => {
           Citas
         </Typography>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" color="primary" fullWidth>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleRout}
+          >
             Crear
-          </Button>
-          <Button variant="contained" color="secondary" fullWidth>
-            Actualizar
           </Button>
           <Button variant="outlined" color="primary" fullWidth>
             Consultar
@@ -82,56 +88,6 @@ export const Dashboard = () => {
         </Typography>
         <Button variant="contained" color="primary" fullWidth>
           Ver Historial
-        </Button>
-      </Box>
-
-      {/* Sección: Atención de Mascotas */}
-      <Box
-        sx={{
-          marginBottom: "30px",
-          backgroundColor: "#ffffff",
-          borderRadius: "8px",
-          padding: "20px",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
-        }}
-      >
-        <Typography
-          variant="h5"
-          sx={{
-            marginBottom: "15px",
-            color: "#34495e",
-            fontWeight: "600",
-          }}
-        >
-          Atención de Mascotas
-        </Typography>
-        <Button variant="contained" color="primary" fullWidth>
-          Atender Mascota
-        </Button>
-      </Box>
-
-      {/* Sección: Agendar Citas */}
-      <Box
-        sx={{
-          marginBottom: "30px",
-          backgroundColor: "#ffffff",
-          borderRadius: "8px",
-          padding: "20px",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
-        }}
-      >
-        <Typography
-          variant="h5"
-          sx={{
-            marginBottom: "15px",
-            color: "#34495e",
-            fontWeight: "600",
-          }}
-        >
-          Agendar Citas
-        </Typography>
-        <Button variant="contained" color="primary" fullWidth>
-          Agendar
         </Button>
       </Box>
     </Box>

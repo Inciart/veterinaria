@@ -23,10 +23,15 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 const drawerWidth = 240;
 
 export const DashboardUser = () => {
-  const navigate = useNavigate(); // Hook para navegación
+  const navigate = useNavigate();
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const HandleBack = () => {
+    navigate("/citas");
+  };
   const GotoRegister = () => {
-    navigate("./registerpet");
+    navigate("/registerpet");
   };
   // Función para alternar la apertura/cierre de la barra lateral en dispositivos móviles
   const handleDrawerToggle = () => {
@@ -36,28 +41,38 @@ export const DashboardUser = () => {
   // Contendo de la barra lateral o sidebar
   const drawer = (
     <div>
-      <Toolbar />
+      <Toolbar
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "#1976d2",
+          color: "white",
+        }}
+      >
+        Veterinaria
+      </Toolbar>
       <Divider />
       <List>
         {/* Opción: Registro de Mascotas */}
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={GotoRegister}>
             <ListItemIcon>
               <PetsIcon />
             </ListItemIcon>
             <ListItemText primary="Registro de Mascotas" />
           </ListItemButton>
         </ListItem>
+        <Divider />
 
-        {/* Opción: Apartado de Citas */}
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={HandleBack}>
             <ListItemIcon>
               <EventIcon />
             </ListItemIcon>
             <ListItemText primary="Apartado de Citas" />
           </ListItemButton>
         </ListItem>
+        <Divider />
       </List>
     </div>
   );
@@ -158,7 +173,7 @@ export const DashboardUser = () => {
         {/* Botón: Registro de Mascotas */}
 
         <Button
-          onSubmit={GotoRegister}
+          onClick={GotoRegister}
           variant="contained"
           color="primary"
           startIcon={<PetsIcon />}
@@ -173,6 +188,7 @@ export const DashboardUser = () => {
           color="secondary"
           startIcon={<EventIcon />}
           fullWidth
+          onClick={HandleBack}
         >
           Apartado de Citas
         </Button>

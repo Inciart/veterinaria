@@ -6,20 +6,23 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
+import swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
-export const RegisterPet = () => {
-  const navigate = useNavigate();
-  const handleSubmit = () => {
-    Swal.fire({
-      title: "Perfecto!",
-      text: "Mascota registrada correctamente.",
-      icon: "success",
-    });
-  };
+export const Citas = () => {
+  const navigate = useNavigate(); 
+
   const handleCancel = () => {
-    navigate("/dashboard");
+    navigate("/dashboard"); 
+  };
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    swal.fire({
+      title: "Excelente!",
+      text: "Su cita ha sido agendada exitosamente.",
+      icon: "success",
+      confirmButtonText: "aceptar",
+    });
   };
 
   return (
@@ -34,7 +37,7 @@ export const RegisterPet = () => {
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
-      {/* Título */}
+      
       <Typography
         variant="h4"
         sx={{
@@ -44,11 +47,30 @@ export const RegisterPet = () => {
           fontWeight: "700",
         }}
       >
-        Registro de Mascotas
+        Gestión de Citas
       </Typography>
 
-      {/* Formulario */}
+      
       <Stack spacing={3} component="form">
+        
+        <TextField
+          label="Fecha de la Cita"
+          variant="outlined"
+          type="date"
+          InputLabelProps={{ shrink: true }}
+          fullWidth
+          required
+        />
+
+        <TextField
+          label="Hora de la Cita"
+          variant="outlined"
+          type="time"
+          InputLabelProps={{ shrink: true }}
+          fullWidth
+          required
+        />
+
         {/* Campo: Nombre de la mascota */}
         <TextField
           label="Nombre de la Mascota"
@@ -57,51 +79,26 @@ export const RegisterPet = () => {
           required
         />
 
+        {/* Campo: Motivo de la cita */}
         <TextField
-          label="Especie (Perro, Gato, etc.)"
+          label="Motivo de la Cita"
           variant="outlined"
+          multiline
+          rows={4}
           fullWidth
           required
         />
 
-        <TextField label="Raza" variant="outlined" fullWidth />
-
-        <TextField
-          label="Edad (en años)"
-          variant="outlined"
-          type="number"
-          fullWidth
-          required
-        />
-
-        <TextField
-          label="Nombre del Propietario"
-          variant="outlined"
-          fullWidth
-          required
-        />
-
-        <TextField
-          label="Teléfono de Contacto"
-          variant="outlined"
-          type="tel"
-          fullWidth
-          required
-        />
-
+        {/* Botones */}
         <Stack direction="row" spacing={2} justifyContent="center">
-          {/* Botón: Registrar */}
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={handleSubmit}
-          >
-            Registrar
+          {/* Botón: Agendar Cita */}
+          <Button variant="contained" color="primary" fullWidth
+          onClick={handleSubmit}>
+            Agendar Cita
           </Button>
 
+          {/* Botón: Cancelar */}
           <Button
-            onSubmit={handleSubmit}
             variant="outlined"
             color="secondary"
             fullWidth

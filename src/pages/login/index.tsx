@@ -11,6 +11,7 @@ import {
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import { useState } from "react";
+import axios from "axios";
 import Swal from "sweetalert2";
 /**
  * Typography
@@ -44,13 +45,16 @@ export const Login = () => {
     email: "",
     password: "",
   });
-  const navigate = useNavigate(); // Hook para la navegación programática
-  // Aqui validamos el inicio de sesión, si el usuario no ha ingresado su email o password, se le muestra un mensaje de alerta.
-  // Si el usuario ha ingresado su email y password, se le redirige a la página de dashboard.
-  // mas adelante se ralcionaran con la base de datos para validar el inicio de sesión correspondientemente.
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Evita el comportamiento predeterminado del formulario
+
+    try {
+      const res = await axios.post("http://localhost:3000/login", formData);
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
 
     if (formData.email === "" || formData.password === "") {
       Swal.fire({
@@ -73,7 +77,7 @@ export const Login = () => {
         icon: "success",
         draggable: true,
       }).then(() => {
-        navigate("/dashboard"); // Redirige a la página de dashboard
+        navigate("/dashboard");
       });
     }
   };
